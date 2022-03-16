@@ -1,7 +1,4 @@
 import Dashboard from "./views/Dashboard.js";
-import {v4 as uuidv4} from 'uuid';
-
-// let myuuid = uuidv4();
 
 const navigateTo = url => {
     history.pushState(null, null, url);

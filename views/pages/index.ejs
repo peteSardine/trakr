@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+
+  <script>
+
+function getCookie(c_name)
+{
+   var i,x,y,ARRcookies=document.cookie.split(";");
+   for (i=0; i<ARRcookies.length; i++)
+   {
+      x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+      y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+      x=x.replace(/^\s+|\s+$/g,"");
+      if (x==c_name)
+      {
+        console.log("cookie monster say" + " " + unescape(y));
+        return unescape(y);
+      }
+   }
+}
+
+    var isDev=true;
+    var sardineHost = isDev ? 'api.dev.sardine.ai' : 'api.sardine.ai';//please set isDev to true in Dev
+    (function () {
+        var loader = document.createElement('script');
+        loader.type = 'text/javascript';
+        loader.async = true;
+        loader.src = `https://${sardineHost}/assets/loader.min.js`;
+        loader.onload = function() {
+            sardineContext = window._Sardine.createContext({
+                clientId: "f70da198-6faf-49dd-97c9-33bb406a10c8", //CHANGE THIS
+                sessionKey: getCookie("sessionID"), // Please CHANGE this to  pass server side generated sessionKey and you will need this again for back-end  API call
+                userIdHash:"", //CHANGE this to pass internal userId or hash of email/phone. Dont pass it if its not available.
+                flow: location.pathname,
+                environment: isDev ? "development" : "production",
+                parentElement: document.body,
+                // called when sardine generates/restores deviceID for given device. 
+                onDeviceResponse: function(data) {
+                    console.log(`${data.deviceId}`);
+                }
+            });
+            console.log(`${sardineContext}`);
+        };
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(loader, s);
+    })();
+</script>
+
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+<main>
+  <div class="jumbotron">
+    <h1>AppIt</h1>
+    <p>Welcome to my new platform</p>
+  </div>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+<script type="text/javascript">
+  const data = {
+  "sessionKey": getCookie('sessionID'),
+  "payload": {
+    "userIdHash": ""
+  }
+};
+  window.onbeforeunload = function(){
+
+fetch('/submit', {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+};
+</script>
+
+</body>
+</html>

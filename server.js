@@ -3,6 +3,7 @@ var app = express();
 var dayjs = require('dayjs');
 const {v4 : uuidv4} = require('uuid');
 var axios = require('axios');
+var favicon = require('serve-favicon');
 
 
 
@@ -10,6 +11,7 @@ var axios = require('axios');
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
+app.use(favicon(__dirname + '/favicon.ico')); 
 
 // parse application/json
 app.use(express.json());

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <script>
-function getCookie(c_name)
+function a(c_name)
 {
    var i,x,y,ARRcookies=document.cookie.split(";");
    for (i=0; i<ARRcookies.length; i++)
@@ -17,7 +17,7 @@ function getCookie(c_name)
    }
 }
     var isDev=true;
-    var sardineHost = isDev ? 'api.dev.sardine.ai' : 'api.sardine.ai';//please set isDev to true in Dev
+    var sardineHost = isDev ? 'api.dev.sardine.ai' : 'api.sardine.ai';
     (function () {
         var loader = document.createElement('script');
         loader.type = 'text/javascript';
@@ -25,18 +25,16 @@ function getCookie(c_name)
         loader.src = `https://${sardineHost}/assets/loader.min.js`;
         loader.onload = function() {
             sardineContext = window._Sardine.createContext({
-                clientId: "f70da198-6faf-49dd-97c9-33bb406a10c8", //CHANGE THIS
-                sessionKey: getCookie("sessionID"), // Please CHANGE this to  pass server side generated sessionKey and you will need this again for back-end  API call
-                userIdHash:"", //CHANGE this to pass internal userId or hash of email/phone. Dont pass it if its not available.
+                clientId: "f70da198-6faf-49dd-97c9-33bb406a10c8",
+                sessionKey: a("sessionID"),
+                userIdHash:"",
                 flow: location.pathname,
                 environment: isDev ? "development" : "production",
                 parentElement: document.body,
-                // called when sardine generates/restores deviceID for given device. 
+                // generates/restores deviceID 
                 onDeviceResponse: function(data) {
-                    console.log(`${data.deviceId}`);
                 }
             });
-            console.log(`${sardineContext}`);
         };
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(loader, s);
@@ -49,7 +47,7 @@ function getCookie(c_name)
 
 <script type="text/javascript">
   const data = {
-  "sessionKey": getCookie('sessionID'),
+  "sessionKey": a('sessionID'),
   "payload": {
     "userIdHash": ""
   }
@@ -57,7 +55,7 @@ function getCookie(c_name)
   window.onbeforeunload = function(){
 
 fetch('/submit', {
-  method: 'POST', // or 'PUT'
+  method: 'POST',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -73,29 +71,7 @@ fetch('/submit', {
 };
 </script>
 
-<style>
-  .loader {
-    display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-          }
-          .loader img{
-              position: relative;
-            
-          }
-  </style>
-  
-  <div class="loader" ><img src="https://c.tenor.com/_4YgA77ExHEAAAAd/rick-roll.gif"></div>
-  
-  <script>
-      window.onload = function() 
-      {
-          //display loader on page load 
-          $('.loader').fadeOut();
-      }
-  
-  </script>
+<p style="text-align:center;"><img src="https://flevix.com/wp-content/uploads/2019/07/Disk-Preloader-1.gif" alt="Logo"></p>
 
 </body>
 </html>

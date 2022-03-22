@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(express.json());
+app.use(express.static('public'))
 
 // render index page
 app.get('/', function(req, res) {

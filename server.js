@@ -58,8 +58,7 @@ axios('https://api.dev.sardine.ai/v2/devices', {
 
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
-//console.log('Server is listening on port 8080');

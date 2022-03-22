@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <%- include('../partials/head'); %>
-
   <script>
-
 function getCookie(c_name)
 {
    var i,x,y,ARRcookies=document.cookie.split(";");
@@ -15,12 +12,10 @@ function getCookie(c_name)
       x=x.replace(/^\s+|\s+$/g,"");
       if (x==c_name)
       {
-        console.log("cookie monster say" + " " + unescape(y));
         return unescape(y);
       }
    }
 }
-
     var isDev=true;
     var sardineHost = isDev ? 'api.dev.sardine.ai' : 'api.sardine.ai';//please set isDev to true in Dev
     (function () {
@@ -48,23 +43,9 @@ function getCookie(c_name)
     })();
 </script>
 
+
 </head>
 <body class="container">
-
-<header>
-  <%- include('../partials/header'); %>
-</header>
-
-<main>
-  <div class="jumbotron">
-    <h1>AppIt</h1>
-    <p>Welcome to my new platform</p>
-  </div>
-</main>
-
-<footer>
-  <%- include('../partials/footer'); %>
-</footer>
 
 <script type="text/javascript">
   const data = {
@@ -91,6 +72,30 @@ fetch('/submit', {
 });
 };
 </script>
+
+<style>
+  .loader {
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+          }
+          .loader img{
+              position: relative;
+            
+          }
+  </style>
+  
+  <div class="loader" ><img src="https://c.tenor.com/_4YgA77ExHEAAAAd/rick-roll.gif"></div>
+  
+  <script>
+      window.onload = function() 
+      {
+          //display loader on page load 
+          $('.loader').fadeOut();
+      }
+  
+  </script>
 
 </body>
 </html>

@@ -46,11 +46,12 @@ axios('https://api.dev.sardine.ai/v2/devices', {
   data: JSON.stringify(req.body)
 })
 .then(data => {
-  console.log('Success:', data.data)
-  return res.end();;
+  console.log('Success:', data.data);
+  return res.end();
 })
 .catch((error) => {
   console.error('Error:', error.data);
+  return res.end();
 });
 
 

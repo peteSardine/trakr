@@ -11,11 +11,11 @@ var favicon = require('serve-favicon');
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
-app.use(favicon(__dirname + '/favicon.ico')); 
+app.use(favicon(__dirname + '/favicon.ico'));
+app.use(express.static(__dirname + '/views/pages/')); 
 
 // parse application/json
 app.use(express.json());
-app.use(express.static('public'))
 
 // render index page
 app.get('/', function(req, res) {
